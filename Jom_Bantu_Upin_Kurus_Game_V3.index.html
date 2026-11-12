@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jom Bantu Upin Kurus! | Misi Piramid Makanan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@600;700;800;900;1000&display=swap');
+:root{--ink:#24345b;--orange:#ff713d;--yellow:#ffdb4d;--green:#39c98a;--pink:#ff75a6;--blue:#47b8f2;--purple:#9572ef}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:'Nunito','Trebuchet MS',sans-serif;color:var(--ink);background:linear-gradient(135deg,#8ee7ff 0%,#b9f4cf 32%,#fff0a8 66%,#ffc5dd 100%);overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.bg-shape{position:fixed;border-radius:50%;opacity:.25;pointer-events:none;z-index:0}.s1{width:260px;height:260px;background:#fff;top:-80px;left:-70px}.s2{width:300px;height:300px;background:#ff8bb5;right:-120px;top:35%}.s3{width:190px;height:190px;background:#fff;bottom:-70px;left:24%}
+.screen{display:none;min-height:100vh;padding:18px;align-items:center;justify-content:center;position:relative;z-index:1}.screen.active{display:flex}
+.panel{width:min(1180px,100%);background:#ffffffed;border:5px solid #fff;border-radius:34px;padding:clamp(17px,3vw,34px);box-shadow:0 16px 0 #385b7d24,0 24px 55px #24456728;position:relative;overflow:hidden}
+.panel:before{content:"";position:absolute;inset:0 0 auto;height:13px;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--green),var(--blue),var(--purple))}
+.hero{text-align:center}.ribbon{display:inline-block;background:#273d70;color:white;border-radius:999px;padding:9px 18px;font-weight:1000;letter-spacing:1.5px;font-size:13px;box-shadow:0 5px 0 #17264c}
+h1{font-family:'Baloo 2',sans-serif;font-size:clamp(42px,7vw,78px);line-height:.96;margin:17px 0 8px;color:#ff653e;text-shadow:3px 4px 0 #ffe36c,5px 7px 0 #f7b6a0}
+.sub{font-size:clamp(17px,2.3vw,23px);font-weight:900;line-height:1.35}
+.hero-scene{height:265px;display:flex;justify-content:center;align-items:end;gap:35px;position:relative;margin:5px auto 12px;max-width:760px;background:linear-gradient(#a9eaff,#e4fbd0);border:4px solid white;border-radius:30px;overflow:hidden;box-shadow:inset 0 -15px #7edb86}
+.cloud{position:absolute;font-size:48px;animation:cloud 9s linear infinite;top:15px;left:-60px}.cloud.c2{top:55px;animation-delay:-4s;font-size:35px}
+@keyframes cloud{to{transform:translateX(900px)}}
+.char{position:relative;width:160px;height:225px;flex:none;transform-origin:bottom center;transition:all .55s cubic-bezier(.2,1.4,.4,1);animation:hop 2.3s ease-in-out infinite}
+.char .head{position:absolute;width:103px;height:99px;left:29px;top:0;background:#f5bc91;border:4px solid #75452f;border-radius:48% 48% 46% 46%;z-index:3}
+.char .ear{position:absolute;width:22px;height:30px;top:42px;background:#f5bc91;border:4px solid #75452f;border-radius:50%;z-index:2}.ear.l{left:19px}.ear.r{right:19px}
+.char .scalp{position:absolute;left:25px;top:-5px;width:110px;height:37px;background:#262b39;border-radius:55% 55% 20% 20%;z-index:4}.char .scalp:after{content:"";position:absolute;right:6px;top:17px;width:36px;height:18px;border-radius:50%;background:#262b39}
+.char .eye{position:absolute;top:44px;left:29px;width:9px;height:13px;border-radius:50%;background:#25283a}.char .eye.r{left:65px}.char .cheek{position:absolute;top:63px;left:19px;width:20px;height:11px;border-radius:50%;background:#f58e89;opacity:.7}.char .cheek.r{left:67px}
+.char .mouth{position:absolute;top:68px;left:43px;width:23px;height:12px;border-bottom:4px solid #934c4b;border-radius:50%}
+.char .body{position:absolute;left:13px;top:93px;width:134px;height:106px;border:4px solid #75452f;border-radius:43% 43% 28% 28%;background:#ffb63e;transition:all .55s cubic-bezier(.2,1.4,.4,1);z-index:1}
+.char .shirt{position:absolute;left:25px;top:111px;width:110px;height:67px;border-radius:35px 35px 15px 15px;background:#ff704d;z-index:2}
+.char .button{position:absolute;left:77px;top:125px;width:8px;height:8px;border-radius:50%;background:#ffe46c;z-index:4}
+.char .arm{position:absolute;top:112px;width:29px;height:74px;background:#f5bc91;border:4px solid #75452f;border-radius:22px;z-index:0}.char .arm.l{left:0;transform:rotate(23deg);transform-origin:top}.char .arm.r{right:0;transform:rotate(-23deg);transform-origin:top}
+.char .leg{position:absolute;top:184px;width:33px;height:39px;background:#395c9c;border:4px solid #75452f;border-radius:12px;z-index:0}.char .leg.l{left:43px}.char .leg.r{right:43px}
+.char.slim{transform:scaleX(.77) scaleY(.98)}.char.slim .body{width:104px;left:28px;border-radius:36% 36% 20% 20%}.char.slim .shirt{width:82px;left:39px}
+.char.fat{transform:scaleX(1.12) scaleY(1.02)}.char.fat .body{width:150px;left:5px;height:112px;border-radius:47%}.char.fat .shirt{width:124px;left:18px}
+@keyframes hop{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.food-float{font-size:54px;animation:float 2s ease-in-out infinite;align-self:center}.food-float:nth-child(2){animation-delay:.5s}@keyframes float{50%{transform:translateY(-15px) rotate(8deg)}}
+.btn-main{background:linear-gradient(180deg,#ff9149,#f04e39);color:#fff;padding:16px 38px;border-radius:20px;font-weight:1000;font-size:25px;box-shadow:0 8px 0 #bc3c2c,0 12px 20px #d9533640;transition:.15s}.btn-main:active{transform:translateY(5px);box-shadow:0 3px 0 #bc3c2c}
+.btn-alt{background:#eaf4ff;color:#2c5484;border:3px solid #c4e1ff;border-radius:16px;padding:12px 19px;font-weight:1000}.btn-teacher{background:#253d70;color:white;border-radius:15px;padding:12px 18px;font-weight:1000}
+.startbox{max-width:790px;margin:16px auto;background:#fff4bd;border:3px dashed #f4b52e;border-radius:22px;padding:16px;font-weight:900}.startbox input{width:min(420px,100%);padding:13px 16px;border:3px solid #f6c74b;border-radius:13px;margin:8px;font-size:18px;outline:none}
+.home-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.gamepanel{padding:18px 22px}.game-top{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;margin-bottom:10px}.brand{font-family:'Baloo 2';font-size:23px;font-weight:1000;color:#f05d3d}.chip{background:#fff1b4;border:2px solid #ffe08a;border-radius:999px;padding:9px 15px;font-weight:1000;white-space:nowrap}.progress-shell{background:#e6edf6;border-radius:999px;height:14px;overflow:hidden;margin:8px 0 14px}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#43d68e,#ffdb4d,#ff8b4a);transition:width .5s}
+.upin-progress{background:linear-gradient(90deg,#fff1c1,#ffe2ed);border:2px solid white;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:13px;margin-bottom:14px;box-shadow:0 4px 0 #edcfb4}
+.mini-char{width:42px;height:48px;position:relative;flex:none;transition:.5s}.mini-char:before{content:"";position:absolute;width:26px;height:26px;border:2px solid #75452f;border-radius:50%;background:#f5bc91;left:8px;top:0;box-shadow:0 -5px 0 -1px #252b3a}.mini-char:after{content:"";position:absolute;width:37px;height:23px;border:2px solid #75452f;border-radius:45%;background:#ff9c39;left:3px;bottom:0;transition:.4s}.mini-char.slim:after{width:24px;left:9px}.mini-char.fat:after{width:43px;left:0;height:26px}
+.upin-progress strong{font-size:15px}.upin-progress .bar{height:11px;background:#f3cbd1;border-radius:99px;overflow:hidden;margin-top:4px}.upin-progress .bar span{display:block;height:100%;background:linear-gradient(90deg,#ffb13e,#49c98b);width:0;transition:.4s}
+.question-head{display:flex;align-items:center;gap:12px}.mission-number{width:52px;height:52px;border-radius:17px;background:#ffe05a;box-shadow:0 5px 0 #e7b935;display:grid;place-items:center;font-size:24px;font-weight:1000;flex:none}.mission-title{font-family:'Baloo 2';font-size:clamp(22px,3vw,31px);font-weight:1000;margin:0;color:#314a7d}
+.art-card{min-height:125px;margin:12px 0;border:3px solid white;border-radius:22px;background:linear-gradient(130deg,#d6f7ff,#fff2bd 55%,#ffd9e8);box-shadow:inset 0 -7px #b7e6d3;display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,30px);font-size:clamp(38px,6vw,64px);position:relative;overflow:hidden}
+.art-card .sticker{position:absolute;right:12px;top:8px;background:#fff;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;font-size:22px;box-shadow:0 3px 0 #dce4eb}
+.qtext{font-size:clamp(18px,2.2vw,24px);font-weight:1000;line-height:1.3;margin:9px 0 12px}
+.answer-layout{display:grid;grid-template-columns:1fr 1fr;gap:15px;align-items:stretch}.answer-bank,.target{border-radius:21px;padding:13px;background:#f1f8ff;border:3px solid #c8e4ff;min-height:170px}
+.answer-bank h3,.target h3{margin:0 0 10px;font-size:15px;color:#38618d}.answer-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.drag-card{background:white;border:3px solid #e1eaf4;border-radius:15px;padding:11px 12px;min-height:59px;display:flex;align-items:center;gap:9px;font-weight:900;color:#2c4569;cursor:grab;box-shadow:0 4px 0 #dce6f0;user-select:none;touch-action:none;transition:.15s}
+.drag-card:active{cursor:grabbing}.drag-card .letter{width:30px;height:30px;display:grid;place-items:center;background:#e6f4ff;border-radius:10px;flex:none;font-weight:1000}.drag-card.dragging{opacity:.4;transform:scale(.97)}.drag-card.used{opacity:.3;pointer-events:none}
+.target{background:#fff9df;border:3px dashed #f2bd3f;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#9c6c13;transition:.2s}.target.over{background:#fff0b5;transform:scale(1.015);border-color:#ff8b42}.target .target-inner{font-size:18px;font-weight:1000;line-height:1.35}.target .chosen{display:none;background:white;color:#34517a;border:3px solid #f4c54d;border-radius:15px;padding:12px;margin-top:8px;font-size:16px;width:100%}.target.has-answer .chosen{display:block}.target.has-answer .placeholder{display:none}
+.target .dropicon{font-size:30px;display:block;margin-bottom:4px}
+.feedback{display:none;margin-top:11px;padding:11px 15px;border-radius:15px;font-weight:900}.feedback.show{display:block}.feedback.good{background:#e3fff0;color:#15774f}.feedback.bad{background:#fff0f1;color:#a53648}
+.game-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px}.navbtn{padding:12px 18px;border-radius:15px;font-weight:1000;background:#eaf3ff;color:#2c5484;border:2px solid #c8e0fa}.navbtn:disabled{opacity:.35;cursor:not-allowed}.nextbtn{background:linear-gradient(180deg,#ff9349,#f05a3e);color:white;border:0;box-shadow:0 5px 0 #bd3d2e}.timer{font-size:20px;font-weight:1000;color:#e75b3c;background:#fff0e8;border:2px solid #ffc9ad;border-radius:14px;padding:8px 13px}.timer.urgent{animation:pulse .6s infinite alternate;background:#ffe0e3}@keyframes pulse{to{transform:scale(1.06)}}
+.timer-note{font-size:12px;font-weight:800;color:#66809b;text-align:center;margin-top:7px}
+.finish-score{font-family:'Baloo 2';font-size:clamp(58px,10vw,100px);font-weight:1000;color:#f15c3d;text-shadow:3px 4px #ffe16c}.finish-art{font-size:65px;margin:8px}
+.dashboard{width:min(1200px,100%)}.dash-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.dash-title{font-family:'Baloo 2';font-size:38px;color:#f05d3d;margin:8px 0}.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:15px 0}.stat{border-radius:18px;padding:14px;background:#eef8ff;border:2px solid #d5ebfa}.stat b{font-size:29px;display:block;color:#315b91}.stat span{font-size:12px;font-weight:900;color:#64809b}.table-wrap{overflow:auto;border-radius:17px;border:2px solid #e0eaf4}table{border-collapse:collapse;width:100%;min-width:720px;background:white}th{background:#314d7e;color:white;text-align:left;padding:12px;font-size:13px}td{padding:12px;border-bottom:1px solid #e9eff5;font-weight:800;font-size:14px}tr:nth-child(even) td{background:#f7fbff}.empty{text-align:center;padding:30px;color:#7288a2;font-weight:900}.dash-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.tiny{font-size:12px;color:#7085a0;font-weight:800}
+
+/* Latar dunia permainan: setiap misi mempunyai suasana tersendiri */
+.gamepanel{background-size:cover;background-position:center;isolation:isolate}
+.gamepanel:after{content:"";position:absolute;inset:13px 0 0;z-index:-1;opacity:.56;pointer-events:none;background-image:radial-gradient(circle at 8% 18%,#fff 0 5px,transparent 6px),radial-gradient(circle at 92% 25%,#fff 0 7px,transparent 8px),radial-gradient(circle at 85% 82%,#fff 0 5px,transparent 6px),radial-gradient(circle at 12% 78%,#fff 0 8px,transparent 9px);background-size:145px 130px,190px 160px,170px 150px,210px 170px}
+.gamepanel.scene0{background-image:linear-gradient(135deg,#d9f8ff,#fff2b5 55%,#ffd9e9)}
+.gamepanel.scene1{background-image:linear-gradient(135deg,#d9f5d7,#fff4bb 52%,#c9edff)}
+.gamepanel.scene2{background-image:linear-gradient(135deg,#c9f6e4,#e3f7ff 48%,#fff0b9)}
+.gamepanel.scene3{background-image:linear-gradient(135deg,#fff0bd,#ffe0cf 50%,#d8f3ff)}
+.gamepanel.scene4{background-image:linear-gradient(135deg,#d7edff,#e8ddff 52%,#fff0c4)}
+.gamepanel.scene5{background-image:linear-gradient(135deg,#fff0bd,#d7f7e7 52%,#d8eaff)}
+.gamepanel.scene6{background-image:linear-gradient(135deg,#ffe0e9,#fff1bd 50%,#d4f7e9)}
+.gamepanel.scene7{background-image:linear-gradient(135deg,#d8f6ff,#e5e0ff 52%,#fff0bf)}
+.gamepanel.scene8{background-image:linear-gradient(135deg,#fff0c2,#d6f6e8 52%,#ffdce8)}
+.gamepanel.scene9{background-image:linear-gradient(135deg,#d6f5ff,#fff0b7 50%,#e7dfff)}
+.art-card{box-shadow:0 7px 0 #b6d9d2,0 10px 20px #567b8a20}
+.question-head,.art-card,.qtext,.answer-layout,.feedback,.game-bottom,.upin-progress,.game-top,.progress-shell,.timer-note{position:relative;z-index:1}
+.upin-progress{min-height:108px;background:linear-gradient(100deg,#fff3c6ed,#ffe1e9ed 55%,#dff8e9ed);border:3px solid #fff;box-shadow:0 6px 0 #edcfb4,0 8px 18px #5b789022}
+.mini-char{width:92px;height:91px;position:relative;flex:none;transform-origin:bottom center;transition:transform .55s cubic-bezier(.2,1.5,.4,1)}
+.mini-head{position:absolute;z-index:4;width:34px;height:34px;left:29px;top:0;border:2.5px solid #75452f;border-radius:48%;background:#f5bc91}
+.mini-head:before{content:"";position:absolute;left:-2px;top:-4px;width:34px;height:13px;border-radius:50% 50% 20% 20%;background:#252b3a}
+.mini-head i,.mini-head b{position:absolute;top:15px;left:9px;width:3px;height:5px;border-radius:50%;background:#252b3a}
+.mini-head b{left:22px}
+.mini-body{position:absolute;z-index:2;left:13px;top:32px;width:66px;height:43px;border:2.5px solid #75452f;border-radius:42% 42% 25% 25%;background:linear-gradient(90deg,#ff9a36,#ffca4a);transition:all .55s cubic-bezier(.2,1.5,.4,1)}
+.mini-arm{position:absolute;z-index:1;top:39px;width:12px;height:35px;border:2px solid #75452f;border-radius:15px;background:#f5bc91;transition:all .55s}
+.mini-arm.left{left:5px;transform:rotate(18deg)}.mini-arm.right{right:5px;transform:rotate(-18deg)}
+.mini-leg{position:absolute;z-index:1;top:69px;width:15px;height:20px;border:2px solid #75452f;border-radius:6px;background:#395c9c}
+.mini-leg.left{left:30px}.mini-leg.right{right:30px}
+.mini-char.slim .mini-body{width:35px;left:28px;border-radius:35% 35% 20% 20%}
+.mini-char.slim .mini-arm.left{left:20px}.mini-char.slim .mini-arm.right{right:20px}
+.mini-char.fat .mini-body{width:73px;left:9px;height:47px}
+.mini-char.fat{transform:scale(1.04)}
+.body-steps{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.body-steps i{font-style:normal;font-size:17px;filter:grayscale(1);opacity:.3;transition:.3s}
+.body-steps i.done{filter:none;opacity:1;transform:scale(1.12)}
+.body-caption{display:block;color:#6c7890;font-size:11px;font-weight:900;margin-top:3px}
+.hero .panel,.hero{background-image:radial-gradient(circle at 8% 20%,#fff8 0 7px,transparent 8px),radial-gradient(circle at 90% 18%,#fff8 0 9px,transparent 10px),linear-gradient(145deg,#fffdf1,#e9faff 45%,#fff0f5)}
+.hero-scene{background-image:radial-gradient(circle at 15% 25%,#fff 0 12px,transparent 13px),radial-gradient(circle at 82% 18%,#fff 0 17px,transparent 18px),linear-gradient(#8ee4ff 0%,#d8f7ff 55%,#b5f0a7 56%,#76d88a 100%)}
+.startbox{background:linear-gradient(120deg,#fff4bd,#ffe2ed 50%,#dcf7ed);box-shadow:0 5px 0 #efd49c}
+
+
+.delete-modal{display:none;position:fixed;inset:0;z-index:10000;background:#172746aa;align-items:center;justify-content:center;padding:18px}
+.delete-modal.open{display:flex}
+.delete-box{width:min(440px,100%);background:#fff;border:5px solid #fff;border-radius:27px;padding:27px;text-align:center;box-shadow:0 15px 45px #10203c55;animation:popin .2s ease-out}
+.delete-box h2{font-family:'Baloo 2';font-size:30px;color:#e65343;margin:7px 0}
+.delete-box p{font-weight:800;color:#647994;line-height:1.5}
+.delete-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.delete-confirm{background:linear-gradient(180deg,#ff796d,#e44343);color:#fff;padding:12px 18px;border-radius:15px;font-weight:1000;box-shadow:0 4px 0 #b92e37}
+@keyframes popin{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+
+@media(max-width:760px){.game-top{grid-template-columns:1fr 1fr}.brand{grid-column:1/-1}.answer-layout{grid-template-columns:1fr}.answer-bank,.target{min-height:135px}.mini-char{transform:scale(.9);margin-left:-5px;margin-right:-5px}.answer-list{grid-template-columns:1fr 1fr}.dash-stats{grid-template-columns:1fr 1fr}.hero-scene{height:225px}.char{transform:scale(.86);margin:0 -9px}.char.slim{transform:scaleX(.68) scaleY(.86)}.char.fat{transform:scaleX(.95) scaleY(.9)}}
+@media(max-width:460px){.answer-list{grid-template-columns:1fr}.game-bottom{flex-wrap:wrap}.timer{order:-1;width:100%;text-align:center}.panel{padding:16px}.hero-scene{gap:0}}
+</style></head>
+<body>
+<div class="bg-shape s1"></div><div class="bg-shape s2"></div><div class="bg-shape s3"></div>
+<section id="home" class="screen active"><div class="panel hero">
+ <div class="ribbon">🎮 PERMAINAN MISI • PIRAMID MAKANAN MALAYSIA</div>
+ <h1>JOM BANTU<br>UPIN KURUS!</h1>
+ <div class="sub">Upin perlukan bantuan kamu! Selesaikan 10 misi pemakanan sihat untuk bantu Upin menjadi lebih cergas. 💪</div>
+ <div class="hero-scene"><div class="cloud">☁️</div><div class="cloud c2">☁️</div>
+  <div class="food-float">🍉🥦</div><div class="char fat" id="heroChar"><div class="ear l"></div><div class="ear r"></div><div class="head"><div class="eye"></div><div class="eye r"></div><div class="cheek"></div><div class="cheek r"></div><div class="mouth"></div></div><div class="scalp"></div><div class="arm l"></div><div class="arm r"></div><div class="body"></div><div class="shirt"></div><div class="button"></div><div class="leg l"></div><div class="leg r"></div></div><div class="food-float">🍎🥕</div>
+ </div>
+ <div class="startbox">📍 KOTAK PERMULAAN — DAFTARKAN KUMPULAN<br><input id="teamName" placeholder="Masukkan nama kumpulan..." maxlength="35"><br><span class="tiny">Setiap kumpulan mempunyai masa maksimum 30 saat bagi setiap soalan.</span></div>
+ <div class="home-actions"><button class="btn-main" onclick="beginMission()">🚦 MULA MISI!</button><button class="btn-teacher" onclick="openDashboard()">📊 DASHBOARD GURU</button></div>
+ <p class="tiny">Arahan: Seret kad jawapan dan lepaskan ke dalam kotak jawapan. Jawapan tidak boleh dipilih dengan klik.</p>
+</div></section>
+<section id="game" class="screen"><div class="panel gamepanel">
+ <div class="game-top"><div class="brand">🚗 JOM BANTU UPIN KURUS!</div><div class="chip" id="qCount">MISI 1 / 10</div><div class="chip">⭐ <span id="score">0</span> / 10</div></div>
+ <div class="progress-shell"><div class="progress-fill" id="progressFill"></div></div>
+ <div class="upin-progress"><div class="mini-char fat" id="miniChar">
+  <span class="mini-head"><i></i><b></b></span><span class="mini-body"></span>
+  <span class="mini-arm left"></span><span class="mini-arm right"></span>
+  <span class="mini-leg left"></span><span class="mini-leg right"></span>
+ </div><div style="flex:1"><strong>BENTUK BADAN UPIN: <span id="bodyLabel">MASIH GEBU</span></strong>
+ <div class="body-steps" id="bodySteps"><i>🍎</i><i>🥦</i><i>🍚</i><i>🐟</i><i>🥛</i><i>🥕</i><i>🍉</i><i>🥚</i><i>🥬</i><i>🏆</i></div>
+ <small class="body-caption">Lihat badan Upin semakin mengecil apabila misi berjaya!</small></div></div>
+ <div class="question-head"><div class="mission-number" id="missionNum">1</div><h2 class="mission-title" id="missionTitle">Misi Kenali Piramid</h2></div>
+ <div class="art-card" id="artCard"></div><div class="qtext" id="qText"></div>
+ <div class="answer-layout">
+  <div class="answer-bank"><h3>🃏 KAD JAWAPAN — SERET SATU KAD</h3><div class="answer-list" id="answerList"></div></div>
+  <div class="target" id="target"><div class="placeholder"><span class="dropicon">👇</span><div class="target-inner">LEPASKAN JAWAPAN<br>DI SINI</div><small>Seret kad dari sebelah kiri</small></div><div class="chosen" id="chosen"></div></div>
+ </div>
+ <div class="feedback" id="feedback"></div>
+ <div class="game-bottom"><button class="navbtn" id="prevBtn" onclick="goPrevious()">← Sebelumnya</button><div class="timer" id="timer">⏱ 00:30</div><button class="navbtn nextbtn" id="nextBtn" onclick="goNext()">Seterusnya →</button></div>
+ <div class="timer-note">Masa berjalan sebaik sahaja misi dipaparkan. Jawapan perlu diheret ke kotak.</div>
+</div></section>
+<section id="result" class="screen"><div class="panel hero">
+ <div class="ribbon">🏁 MISI SELESAI</div><h1>TAHNIAH, WIRA!</h1><div class="finish-art">🎉🏆🎉</div>
+ <div class="sub" id="endTeam">Kumpulan Wira</div><div class="finish-score"><span id="endScore">0</span>/10</div>
+ <div class="sub" id="endMessage"></div><div class="startbox" id="endSummary"></div>
+ <div class="home-actions"><button class="btn-main" onclick="backHome()">↻ KUMPULAN SETERUSNYA</button><button class="btn-teacher" onclick="openDashboard()">📊 LIHAT DASHBOARD</button></div>
+</div></section>
+<section id="dashboard" class="screen"><div class="panel dashboard">
+ <div class="dash-head"><div><div class="ribbon">RUANG GURU</div><h2 class="dash-title">📊 Dashboard Prestasi Kumpulan</h2></div><button class="btn-alt" onclick="backHome()">← Kembali ke Muka Depan</button></div>
+ <div class="dash-stats"><div class="stat"><b id="totalTeams">0</b><span>JUMLAH KUMPULAN</span></div><div class="stat"><b id="bestScore">—</b><span>MARKAH TERTINGGI</span></div><div class="stat"><b id="fastestTime">—</b><span>MASA TERPANTAS</span></div><div class="stat"><b id="perfectTeams">0</b><span>SKOR PENUH</span></div></div>
+ <div class="table-wrap"><table><thead><tr><th>Kedudukan</th><th>Nama Kumpulan</th><th>Markah</th><th>Jawapan Betul</th><th>Masa</th><th>Tarikh & Masa</th></tr></thead><tbody id="records"></tbody></table></div>
+ <div class="dash-actions"><button class="btn-main" style="font-size:16px;padding:12px 18px" onclick="exportCSV()">⬇ MUAT TURUN DATA (CSV)</button><button class="btn-alt" onclick="clearRecords()">🗑 Padam Rekod</button></div>
+ <p class="tiny">Rekod disimpan dalam pelayar pada peranti ini sahaja. Gunakan komputer dan pelayar yang sama untuk memantau semua kumpulan. Muat turun CSV untuk simpanan atau analisis.</p>
+</div></section>
+
+<div id="deleteModal" class="delete-modal" aria-hidden="true">
+ <div class="delete-box">
+  <div style="font-size:42px">🗑️</div>
+  <h2>Padam semua rekod?</h2>
+  <p>Semua markah dan masa kumpulan dalam dashboard akan dipadam daripada pelayar ini.</p>
+  <div class="delete-actions">
+   <button class="btn-alt" onclick="closeDeleteModal()">Batal</button>
+   <button class="delete-confirm" onclick="confirmClearRecords()">Ya, Padam Rekod</button>
+  </div>
+ </div>
+</div>
+
+<script>
+const data=[
+{title:"Misi 1: Kenali Piramid",q:"Berapakah jumlah aras yang terdapat dalam Piramid Makanan Malaysia?",art:["🔺","🍎","🍚","🐟","🫒"],opts:["Dua aras","Tiga aras","Empat aras","Lima aras"],key:2,why:"Piramid Makanan Malaysia mempunyai empat aras."},
+{title:"Misi 2: Susun Mengikut Aras",q:"Apakah susunan kumpulan makanan yang betul bermula dari Aras 1 hingga Aras 4?",art:["🍎🥦","🍚🍞","🐟🥛","🫒"],opts:["Buah-buahan dan sayur-sayuran → Bijirin dan ubi-ubian → Protein dan tenusu → Lemak dan minyak","Bijirin dan ubi-ubian → Protein dan tenusu → Buah-buahan dan sayur-sayuran → Lemak dan minyak","Protein dan tenusu → Buah-buahan dan sayur-sayuran → Bijirin dan ubi-ubian → Lemak dan minyak","Lemak dan minyak → Bijirin dan ubi-ubian → Protein dan tenusu → Buah-buahan dan sayur-sayuran"],key:0,why:"Urutan yang betul bermula dengan buah-buahan dan sayur-sayuran, diikuti bijirin dan ubi-ubian, protein dan tenusu, kemudian lemak dan minyak."},
+{title:"Misi 3: Kenali Aras 1",q:"Apakah kumpulan makanan yang terdapat pada Aras 1 Piramid Makanan Malaysia?",art:["🍎","🍉","🥬","🥕"],opts:["Ikan dan ayam","Buah-buahan dan sayur-sayuran","Bijirin dan ubi-ubian","Lemak dan minyak"],key:1,why:"Aras 1 mengandungi buah-buahan dan sayur-sayuran."},
+{title:"Misi 4: Kenali Aras 2",q:"Antara berikut, yang manakah contoh makanan daripada kumpulan bijirin dan ubi-ubian?",art:["🍚","🍞","🍠","🥛"],opts:["Susu, keju dan yogurt","Ikan, ayam dan telur","Nasi, roti dan ubi keledek","Epal, oren dan tembikai"],key:2,why:"Nasi, roti dan ubi keledek ialah contoh bijirin dan ubi-ubian."},
+{title:"Misi 5: Kenali Aras 3",q:"Apakah kumpulan makanan yang terdapat pada Aras 3 Piramid Makanan Malaysia?",art:["🐟","🍗","🥚","🧀"],opts:["Buah-buahan dan sayur-sayuran","Protein dan tenusu","Bijirin dan ubi-ubian","Lemak dan minyak"],key:1,why:"Aras 3 mengandungi protein dan tenusu."},
+{title:"Misi 6: Kenali Aras 4",q:"Di manakah kedudukan kumpulan lemak dan minyak dalam Piramid Makanan Malaysia?",art:["🫒","🧈","🛢️","🔺"],opts:["Aras 1","Aras 2","Aras 3","Aras 4"],key:3,why:"Lemak dan minyak berada di Aras 4, iaitu bahagian paling atas piramid."},
+{title:"Misi 7: Asingkan Makanan",q:"Antara berikut, yang manakah tergolong dalam kumpulan buah-buahan dan sayur-sayuran?",art:["🥬","🍎","🥕","🍉"],opts:["Bayam, epal dan lobak merah","Nasi, roti dan mi","Ikan, ayam dan telur","Susu, keju dan yogurt"],key:0,why:"Bayam dan lobak merah ialah sayur-sayuran, manakala epal ialah buah-buahan."},
+{title:"Misi 8: Cabaran Pengelasan",q:"Antara padanan berikut, yang manakah BETUL?",art:["🍎","🍚","🐟","🫒"],opts:["Epal – Aras 2","Nasi – Aras 3","Ikan – Aras 3","Minyak masak – Aras 1"],key:2,why:"Ikan ialah sumber protein dan tergolong dalam kumpulan Aras 3."},
+{title:"Misi 9: Betul atau Salah?",q:"Kumpulan buah-buahan dan sayur-sayuran terletak pada Aras 1, manakala kumpulan lemak dan minyak terletak pada Aras 4.",art:["🍎🥦","⬇️","🔺","🫒"],opts:["Betul","Salah"],key:0,why:"Pernyataan ini betul. Buah-buahan dan sayur-sayuran berada di Aras 1, manakala lemak dan minyak berada di Aras 4."},
+{title:"Misi 10: Cabaran Wira Piramid",q:"Kamu diminta melakar Piramid Makanan Malaysia. Yang manakah menunjukkan pelabelan keempat-empat aras dengan betul?",art:["🔺","🍎🥦","🍚🍞","🐟🥛","🫒"],opts:["Aras 1: Buah-buahan dan sayur-sayuran | Aras 2: Bijirin dan ubi-ubian | Aras 3: Protein dan tenusu | Aras 4: Lemak dan minyak","Aras 1: Bijirin dan ubi-ubian | Aras 2: Buah-buahan dan sayur-sayuran | Aras 3: Lemak dan minyak | Aras 4: Protein dan tenusu","Aras 1: Protein dan tenusu | Aras 2: Lemak dan minyak | Aras 3: Bijirin dan ubi-ubian | Aras 4: Buah-buahan dan sayur-sayuran","Aras 1: Lemak dan minyak | Aras 2: Protein dan tenusu | Aras 3: Buah-buahan dan sayur-sayuran | Aras 4: Bijirin dan ubi-ubian"],key:0,why:"Pelabelan ini menunjukkan keempat-empat kumpulan makanan mengikut susunan Aras 1 hingga Aras 4 yang betul."}
+];
+let idx=0,answers=Array(10).fill(null),times=Array(10).fill(0),remaining=30,interval=null,startedAt=0,team="",audio=null,musicTimer=null,musicStep=0,locked=false;
+const $=x=>document.getElementById(x);
+function screen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+function sound(freq=660,dur=.14,type='sine'){try{if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();let o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.0001,audio.currentTime);g.gain.exponentialRampToValueAtTime(.07,audio.currentTime+.025);g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+dur);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch(e){}}
+function musicStart(){if(musicTimer)return;let melody=[523,659,784,659,587,698,880,698,523,659,784,988,880,784,659,587];musicTimer=setInterval(()=>{sound(melody[musicStep++%melody.length],.22)},280)}
+function musicStop(){clearInterval(musicTimer);musicTimer=null}
+function beginMission(){team=$('teamName').value.trim();if(!team){alert('Sila masukkan nama kumpulan dahulu!');$('teamName').focus();return}idx=0;answers=Array(10).fill(null);times=Array(10).fill(0);startedAt=Date.now();musicStart();screen('game');renderQuestion()}
+function setTimer(){clearInterval(interval);remaining=30;updateTimer();interval=setInterval(()=>{remaining--;updateTimer();if(remaining<=0){clearInterval(interval);if(answers[idx]===null){times[idx]=30;answers[idx]={choice:null,correct:false,time:30,timeout:true};locked=true;sound(180,.4,'sawtooth');showFeedback(false,true);updateUpin();$('nextBtn').textContent=idx===9?'Lihat Keputusan 🏁':'Seterusnya →'}}},1000)}
+function updateTimer(){$('timer').textContent='⏱ 00:'+String(remaining).padStart(2,'0');$('timer').classList.toggle('urgent',remaining<=8)}
+function renderQuestion(){let q=data[idx];locked=!!answers[idx];$('game').querySelector('.gamepanel').className='panel gamepanel scene'+idx;$('qCount').textContent=`MISI ${idx+1} / 10`;$('score').textContent=answers.filter((a,i)=>a&&a.correct).length;$('progressFill').style.width=((idx+1)*10)+'%';$('missionNum').textContent=idx+1;$('missionTitle').textContent=q.title;$('qText').textContent=q.q;$('artCard').innerHTML=q.art.map((x,i)=>`<span style="animation:floaty ${1.5+i*.18}s ease-in-out infinite alternate">${x}</span>`).join('')+'<span class="sticker">✨</span>';$('answerList').innerHTML='';q.opts.forEach((o,i)=>{let el=document.createElement('div');el.className='drag-card';el.draggable=true;el.dataset.index=i;el.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span>${o}</span>`;el.addEventListener('dragstart',e=>{if(locked){e.preventDefault();return}e.dataTransfer.setData('text/plain',String(i));el.classList.add('dragging')});el.addEventListener('dragend',()=>el.classList.remove('dragging'));el.addEventListener('touchstart',touchStart,{passive:false});el.addEventListener('touchmove',touchMove,{passive:false});el.addEventListener('touchend',touchEnd,{passive:false});$('answerList').appendChild(el)});
+ $('target').classList.remove('has-answer','over');$('chosen').textContent='';$('feedback').className='feedback';$('feedback').textContent='';$('nextBtn').disabled=false;$('prevBtn').disabled=idx===0;
+ if(answers[idx]){locked=true;let a=answers[idx];$('target').classList.add('has-answer');$('chosen').textContent=a.choice===null?'Masa tamat — tiada jawapan dihantar':q.opts[a.choice];showFeedback(a.correct,a.timeout);$('timer').textContent='⏱ '+String(a.time).padStart(2,'0')+'s';$('timer').classList.remove('urgent');$('nextBtn').textContent=idx===9?'Lihat Keputusan 🏁':'Seterusnya →'}else{$('nextBtn').textContent=idx===9?'Lihat Keputusan 🏁':'Seterusnya →';setTimer()}
+ updateUpin()}
+const target=$('target');target.addEventListener('dragover',e=>{e.preventDefault();if(!locked)target.classList.add('over')});target.addEventListener('dragleave',()=>target.classList.remove('over'));target.addEventListener('drop',e=>{e.preventDefault();target.classList.remove('over');let n=Number(e.dataTransfer.getData('text/plain'));if(Number.isInteger(n))submitAnswer(n)});
+let touchEl=null,touchGhost=null,touchX=0,touchY=0;
+function touchStart(e){if(locked)return;e.preventDefault();touchEl=e.currentTarget;let t=e.touches[0];touchX=t.clientX;touchY=t.clientY;touchGhost=touchEl.cloneNode(true);touchGhost.style.cssText=`position:fixed;z-index:9999;left:${touchX-60}px;top:${touchY-30}px;width:220px;opacity:.88;pointer-events:none;transform:scale(1.04)`;document.body.appendChild(touchGhost)}
+function touchMove(e){if(!touchGhost)return;e.preventDefault();let t=e.touches[0];touchX=t.clientX;touchY=t.clientY;touchGhost.style.left=(touchX-60)+'px';touchGhost.style.top=(touchY-30)+'px';let el=document.elementFromPoint(touchX,touchY);target.classList.toggle('over',!!(el&&target.contains(el)))}
+function touchEnd(e){if(!touchGhost)return;e.preventDefault();let el=document.elementFromPoint(touchX,touchY);if(el&&target.contains(el))submitAnswer(Number(touchEl.dataset.index));touchGhost.remove();touchGhost=null;touchEl=null;target.classList.remove('over')}
+function submitAnswer(n){if(locked||answers[idx])return;locked=true;clearInterval(interval);let elapsed=30-remaining,correct=n===data[idx].key;times[idx]=elapsed;answers[idx]={choice:n,correct,time:elapsed,timeout:false};$('target').classList.add('has-answer');$('chosen').textContent=data[idx].opts[n];showFeedback(correct,false);sound(correct?784:190,correct?.3:.35,correct?'sine':'triangle');$('score').textContent=answers.filter(a=>a&&a.correct).length;$('nextBtn').textContent=idx===9?'Lihat Keputusan 🏁':'Seterusnya →';updateUpin()}
+function showFeedback(correct,timeout){let f=$('feedback');f.className='feedback show '+(correct?'good':'bad');f.textContent=correct?'🌟 BETUL! '+data[idx].why:(timeout?'⏰ Masa tamat! ':'💪 Belum tepat. ')+data[idx].why}
+function updateUpin(){
+ let count=answers.filter(a=>a&&a.correct).length,mini=$('miniChar');
+ mini.className='mini-char '+(count===0?'fat':count>=8?'slim':'');
+ // Badan Upin benar-benar mengecil secara visual apabila jawapan betul bertambah.
+ let torso=73-(count*4.5);let left=(92-torso)/2;
+ let body=mini.querySelector('.mini-body');body.style.width=torso+'px';body.style.left=left+'px';
+ let armOffset=Math.max(5,left-4);mini.querySelector('.mini-arm.left').style.left=armOffset+'px';mini.querySelector('.mini-arm.right').style.right=armOffset+'px';
+ $('bodyLabel').textContent=count===10?'UPIN SUDAH Cergas!':count>=7?'UPIN HAMPIR KURUS':count>=3?'UPIN SEMAKIN KECIL':'UPIN MASIH GEBU';
+ [...$('bodySteps').children].forEach((el,i)=>el.classList.toggle('done',i<count));
+}
+function goPrevious(){if(idx<=0)return;clearInterval(interval);idx--;renderQuestion()}
+function goNext(){if(!answers[idx]){alert('Seret satu kad jawapan ke dalam kotak dahulu!');return}clearInterval(interval);if(idx<9){idx++;renderQuestion()}else completeMission()}
+function totalCorrect(){return answers.filter(a=>a&&a.correct).length}
+function totalTime(){return times.reduce((a,b)=>a+b,0)}
+function completeMission(){clearInterval(interval);musicStop();let c=totalCorrect(),t=totalTime(),stamp=new Date();let rec={team,score:c,correct:c,time:t,date:stamp.toLocaleString('ms-MY'),created:stamp.getTime()};let records=readRecords();records.push(rec);localStorage.setItem('upinMissionRecords',JSON.stringify(records));$('endTeam').textContent=team;$('endScore').textContent=c;$('endMessage').textContent=c===10?'UPIN SUDAH BERJAYA MENJADI LEBIH CERGAS! 🏆':c>=7?'Hebat! Upin semakin cergas. Teruskan usaha!':'Terima kasih membantu Upin. Cuba lagi untuk dapat markah lebih tinggi!';$('endSummary').innerHTML=`⭐ Jawapan betul: ${c}/10<br>⏱ Jumlah masa: ${formatTime(t)}<br>💚 Progress kecergasan Upin: ${c*10}%`;screen('result');sound(880,.35)}
+function formatTime(s){return Math.floor(s/60)+' minit '+(s%60)+' saat'}
+function readRecords(){try{return JSON.parse(localStorage.getItem('upinMissionRecords')||'[]')}catch(e){return []}}
+function openDashboard(){musicStop();let rows=readRecords().sort((a,b)=>b.score-a.score||a.time-b.time);$('totalTeams').textContent=rows.length;$('bestScore').textContent=rows.length?Math.max(...rows.map(r=>r.score))+'/10':'—';$('fastestTime').textContent=rows.length?formatTime(Math.min(...rows.map(r=>r.time))):'—';$('perfectTeams').textContent=rows.filter(r=>r.score===10).length;$('records').innerHTML=rows.length?rows.map((r,i)=>`<tr><td>${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td><td>${escapeHTML(r.team)}</td><td><b>${r.score}/10</b></td><td>${r.correct}/10</td><td>${formatTime(r.time)}</td><td>${escapeHTML(r.date)}</td></tr>`).join(''):'<tr><td colspan="6" class="empty">Belum ada rekod. Mulakan misi kumpulan pertama!</td></tr>';screen('dashboard')}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function exportCSV(){let rows=readRecords();if(!rows.length){alert('Tiada rekod untuk dimuat turun.');return}let csv=[['Nama Kumpulan','Markah','Jawapan Betul','Jumlah Masa (saat)','Tarikh dan Masa'],...rows.map(r=>[r.team,r.score,r.correct,r.time,r.date])].map(row=>row.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\n');let blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Rekod_Misi_Jom_Bantu_Upin_Kurus.csv';a.click();URL.revokeObjectURL(url)}
+function clearRecords(){
+ // Paparkan dialog tersuai supaya tindakan padam berfungsi konsisten dalam pelayar dan paparan kelas.
+ $('deleteModal').classList.add('open');
+ $('deleteModal').setAttribute('aria-hidden','false');
+}
+function closeDeleteModal(){
+ $('deleteModal').classList.remove('open');
+ $('deleteModal').setAttribute('aria-hidden','true');
+}
+$('deleteModal').addEventListener('click',e=>{if(e.target.id==='deleteModal')closeDeleteModal()});
+function confirmClearRecords(){
+ try{
+  localStorage.removeItem('upinMissionRecords');
+  closeDeleteModal();
+  openDashboard();
+  alert('Semua rekod kumpulan telah dipadam.');
+ }catch(err){
+  closeDeleteModal();
+  alert('Rekod tidak dapat dipadam. Cuba buka fail ini menggunakan Chrome atau Safari dan benarkan storan pelayar.');
+ }
+}
+function backHome(){musicStop();$('teamName').value='';screen('home')}
+</script>
+<style>@keyframes floaty{from{transform:translateY(4px) rotate(-4deg)}to{transform:translateY(-7px) rotate(4deg)}}</style>
+</body></html>
